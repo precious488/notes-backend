@@ -12,7 +12,8 @@ mongoose.set('strictQuery', false)
 
 // const url = 'mongodb://localhost:27017/notes'
 
-mongoose.connect(url)
+mongoose
+  .connect(url)
   .then(() => {
     console.log('Connected to MongoDB')
   })
@@ -24,7 +25,6 @@ const noteSchema = new mongoose.Schema({
   content: String,
   important: Boolean,
 })
-
 
 const Note = mongoose.model('Note', noteSchema)
 
@@ -38,10 +38,10 @@ const Note = mongoose.model('Note', noteSchema)
 //   mongoose.connection.close()
 // })
 
-Note.find({}).then(result=>{
-    result.forEach(note=>{
-        console.log(note)
-        console.log('result')
-    })
-    mongoose.connection.close()
+Note.find({}).then((result) => {
+  result.forEach((note) => {
+    console.log(note)
+    console.log('result')
+  })
+  mongoose.connection.close()
 })
